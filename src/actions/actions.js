@@ -1,21 +1,34 @@
 import * as types from './types.js';
 import axios from 'axios';
 
-export function getMonsters() {  
+export function initializeAppState() {
+    return dispatch => {
+        dispatch(getMonsters());
+        //dispatch(getSpells());
+    }
+}
+
+function getMonsters() {  
   return dispatch => {
-    axios.get('api/monsters')
-        .then(response => {
-            dispatch(getMonstersAsync(response.data.monsters));        
-        })
-        .catch(e => dispatch({
-                type: types.ERROR,
-                payload: e
+    if (process.env.NODE_ENV === 'development') {
+        const monsters = require('../../data/monsters.min.json')["monsters"];
+        dispatch(getMonstersAsync(monsters));
+    }
+    else {
+        axios.get('api/monsters')
+            .then(response => {
+                dispatch(getMonstersAsync(response.data.monsters));        
             })
-        );
+            .catch(e => dispatch({
+                    type: types.ERROR,
+                    payload: e
+                })
+            );
+    }
   }
 }
 
-export function getMonstersAsync(monsters) {
+function getMonstersAsync(monsters) {
     return {
         type: types.GET_MONSTERS,
         payload: monsters
@@ -23,7 +36,7 @@ export function getMonstersAsync(monsters) {
 }
 
 
-export function getSpells() {  
+function getSpells() {  
   return dispatch => {
     axios.get('api/spells')
         .then(response => {
@@ -37,7 +50,7 @@ export function getSpells() {
   }
 }
 
-export function getSpellsAsync(spells) {
+function getSpellsAsync(spells) {
     return {
         type: types.GET_MONSTERS,
         payload: spells

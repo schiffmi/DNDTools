@@ -1,62 +1,130 @@
 import React, { Component } from 'react';
+import Actions from './actions';
+import '../styles/monster.css';
 
 class Monster extends Component {
   constructor(props) {
     super(props);
-    this.state = { selected : false };
+    this.state = { selected : false,
+                   spell: null };
   }
+
+  // NAME | HIT DICE (HP) | AC | SPEED | SIZE
 
   renderNotSelected() {
     const { monster } = this.props;
     return (
-      <section className="monster-row">
-        <div className="columns">
-          <div className="column col-md-2">
+      <section onClick={() => this.setState({selected: true})} className="monster-row">
+        <div className="columns col-gapless">
+          <div className="column col-2">
             <span>{monster.name}</span>
           </div>
-          <div className="column col-md-2">
-            <span className="bold">SIZE: </span><span>{monster.size}</span>
+          <div className="column col-2">
+            <span>{monster.hit_dice} ({monster.hit_points})</span>
           </div>
-          <div className="column col-md-2">
-            <span className="bold">AC: </span><span>{monster.armor_class}</span>
+          <div className="column col-2">
+            <span>{monster.armor_class}</span>
           </div>
-          <div className="column col-md-2">
-            <span className="bold">HP: </span><span>{monster.hit_points}</span>
+          <div className="column col-2">
+            <span>{monster.speed}</span>
           </div>
-          <div className="column col-md-2">
-            <span className="bold">SPEED: </span><span>{monster.speed}</span>
+          <div className="column col-2">
+            <span>{monster.size}</span>
           </div>
-          <div className="column col-md-2">
-            <span className="bold">PASS PER:</span><span>{monster.perception + 10}</span>
-          </div>
-        </div>
-        <div className="columns">
-          <div className="column col-md-2">
-            <div className="bold centered">STR</div><div className="centered">{monster.strength}</div>
-          </div>
-          <div className="column col-md-2">
-            <div className="bold centered">DEX</div><div className="centered">{monster.dexterity}</div>
-          </div>
-          <div className="column col-md-2">
-            <div className="bold centered">CON</div><div className="centered">{monster.constitution}</div>
-          </div>
-          <div className="column col-md-2">
-            <div className="bold centered">INT</div><div className="centered">{monster.intelligence}</div>
-          </div>
-          <div className="column col-md-2">
-            <div className="bold centered">WIS</div><div className="centered">{monster.wisdom}</div>
-          </div>
-          <div className="column col-md-2">
-            <div className="bold centered">CHA</div><div className="centered">{monster.charisma}</div>
+          <div className="column col-2">
+            <span>{monster.challenge_rating}</span>
           </div>
         </div>
       </section>
     );
   }
 
-	render() {
-		return this.renderNotSelected();
-	}
+  renderSelected() {
+    const { monster } = this.props;
+    return (
+      <section className="monster-row monster-selected">
+        <div className="columns col-gapless">
+          <div className={ this.state.spell !== null ? 'column col-9' : 'column col-12'}>
+              <section className="title statblock-section">
+                <div className="columns col-gapless">
+                  <div className="column col-11">
+                    <div className="name">{ monster.name }</div>
+                    <div className="description">{monster.type}, {monster.alignment}</div>
+                  </div>
+                  <div className="column col-1"><button className="btn btn-default btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
+                </div>
+              </section>
+              { /* Important Stats */ }
+              <section className="statblock-section" >
+                <div className="columns col-gapless">
+                  <div className="column col-6">
+                    <div><span className="field-label">Armor Class: </span><span>{monster.armor_class}</span></div>
+                    <div><span className="field-label">Hit Points: </span><span>{monster.hit_dice} ({monster.hit_points})</span></div>
+                    <div><span className="field-label">Speed: </span><span>{monster.speed}</span></div>
+                  </div>
+                  <div className="column col-3">
+                    <div><span className="field-label">Strength: </span><span>{monster.abilities.strength}</span></div>
+                    <div><span className="field-label">Constitution: </span><span>{monster.abilities.constitution}</span></div>
+                    <div><span className="field-label">Dexterity: </span><span>{monster.abilities.dexterity}</span></div>                  
+                  </div>
+                  <div className="column col-3">
+                    <div><span className="field-label">Intelligence: </span><span>{monster.abilities.intelligence}</span></div>
+                    <div><span className="field-label">Wisdom: </span><span>{monster.abilities.wisdom}</span></div>
+                    <div><span className="field-label">Charisma: </span><span>{monster.abilities.charisma}</span></div>
+                  </div>
+                </div>
+              </section>
+              { /* Saves, Checks, Vulnerabilities, Senses, Languages, CR */}
+              <section className="statblock-section">
+                {this.renderSaves()}
+                {this.renderChecks()}
+                {monster.damage_vulnerabilities ? (<div><span className="field-label">Damage Vulnerabilities: </span>{monster.damage_vulnerabilities}</div>) : null }
+                {monster.damage_resistances ? (<div><span className="field-label">Damage Resistances: </span>{monster.damage_resistances}</div>) : null }
+                {monster.damage_immunities ? (<div><span className="field-label">Damage Immunities: </span>{monster.damage_immunities}</div>) : null }
+                {monster.condition_immunities ? (<div><span className="field-label">Condition Immunities: </span>{monster.condition_immunities}</div>) : null }
+                {monster.senses ? (<div><span className="field-label">Senses: </span>{monster.senses}</div>) : null }
+                {monster.languages ? (<div><span className="field-label">Languages: </span>{monster.languages}</div>) : null }
+                {monster.challenge_rating ? (<div><span className="field-label">Challenge Rating: </span>{monster.challenge_rating}</div>) : null }
+              </section>
+              { /* Actions */ }
+              <section className="statblock-section">
+                <div className="section-title">Actions</div>
+                <Actions actions={monster.actions} />
+              </section>
+              { /* Legendary Actions */ }
+              { monster.legendary_actions.length ? (
+                <section className="statblock-section">
+                  <div className="section-title">Legendary Actions</div>
+                  <Actions actions={monster.legendary_actions} />
+                </section> ) : null }
+              { /* Actions */ }
+              { monster.special_abilities.length ? (
+                <section className="statblock-section">
+                  <div className="section-title">Special Abilities</div>
+                  <Actions actions={monster.special_abilities} />
+                </section> ) : null }
+            </div>
+          { /* spells would go here  */}
+        </div>
+      </section>
+    );
+  }
+
+  renderChecks() {
+    const {monster} = this.props;
+    let checkString = Object.keys(monster.checks).reduce( (total, key, ind, arr) => `${total}${key} ${monster.checks[key]}${ind === arr.length - 1 ? '' : ','} `, '');
+    return checkString ? (<div><span className="field-label">Checks: </span>{checkString}</div>) : null;
+  }
+
+  renderSaves() {
+    const {monster} = this.props;
+    let saveString = Object.keys(monster.saves).reduce( (total, key, ind, arr) => `${total}${key} ${monster.saves[key]}${ind === arr.length - 1 ? '' : ','} `, '');
+    return saveString ? (<div><span className="field-label">Saves: </span>{saveString}</div>) : null;
+  }
+
+	render() {      
+    return this.state.selected ? this.renderSelected() : this.renderNotSelected();   
+  }
 }
 
 Monster.propTypes = {
@@ -67,30 +135,13 @@ export default Monster;
 
 
 /*
-    "name": "Aboleth",
-    "size": "Large",
-    "type": "aberration",
-    "subtype": "",
-    "alignment": "lawful evil",
-    "armor_class": 17,
-    "hit_points": 135,
-    "hit_dice": "18d10",
-    "speed": "10 ft., swim 40 ft.",
-    "strength": 21,
-    "dexterity": 9,
-    "constitution": 15,
-    "intelligence": 18,
-    "wisdom": 15,
-    "charisma": 18,
+  
     "constitution_save": 6,
     "intelligence_save": 8,
     "wisdom_save": 6,
     "history": 12,
     "perception": 10,
-    "damage_vulnerabilities": "",
-    "damage_resistances": "",
-    "damage_immunities": "",
-    "condition_immunities": "",
+  
     "senses": "darkvision 120 ft., passive Perception 20",
     "languages": "Deep Speech, telepathy 120 ft.",
     "challenge_rating": "10",

@@ -35,6 +35,8 @@ class Monster():
         self.legendary_actions = monster.pop('legendary_actions', [])
         self.reactions = monster.pop('reactions', [])
         self.saves = {k.replace('_save', ''):v for (k,v) in monster.items() if '_save' in k}
+        for save in self.saves:
+            monster.pop(save + '_save')
         self.checks = monster
 
     def asDict(self):

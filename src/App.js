@@ -3,16 +3,14 @@ import React, { Component } from 'react';
 import './App.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import Spells from './components/spells';
-import Monsters from './containers/container_monsters.js';
-import logo from './logo.svg';
-import { getMonsters } from './actions/actions.js';
+import AppContent from './components/app_content';
+import logo from './d20.svg';
+import { initializeAppState } from './actions/actions.js';
 
 
 class App extends Component {
   componentWillMount() {
-     const getMonstersFunc = this.props.getMonsters;
-     getMonstersFunc();
+     this.props.initializeAppState();
   }
   render() {
     return (
@@ -21,10 +19,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>DND Tools</h2>
         </div>
-        <div className="grid grid-960">
-          <Monsters />
-          {/*<Spells spells={this.state.spells}/>*/}
-        </div>
+        <AppContent />        
       </div>
     );
   }
@@ -32,12 +27,12 @@ class App extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getMonsters
+    initializeAppState
   }, dispatch);
 }
 
 App.propTypes = {
-  getMonsters: React.PropTypes.func
+  initializeAppState: React.PropTypes.func
 };
 
 export default connect(null, mapDispatchToProps)(App);
