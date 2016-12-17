@@ -1,31 +1,61 @@
 import React, { Component } from 'react';
 
 class Monster extends Component {
-	render() {
-		const { monster } = this.props;
-		return (
-			<div className="column columns">
-				<div className="column col-md-2">
-					<span>{monster.name}</span>
-				</div>
-				<div className="column col-md-2">
-					<span>{monster.size}</span>
-				</div>
-				<div className="column col-md-2">
-					<span>{monster.armor_class}</span>
-				</div>
-				<div className="column col-md-2">
-					<span>{monster.hit_points}</span>
-				</div>
-				<div className="column col-md-2">
-					<span>{monster.speed}</span>
-				</div>
-				<div className="column col-md-2">
-					<span>{monster.senses}</span>
-				</div>
-			</div>
-		);
+  constructor(props) {
+    super(props);
+    this.state = { selected : false };
+  }
 
+  renderNotSelected() {
+    const { monster } = this.props;
+    return (
+      <section className="monster-row">
+        <div className="columns">
+          <div className="column col-md-2">
+            <span>{monster.name}</span>
+          </div>
+          <div className="column col-md-2">
+            <span className="bold">SIZE: </span><span>{monster.size}</span>
+          </div>
+          <div className="column col-md-2">
+            <span className="bold">AC: </span><span>{monster.armor_class}</span>
+          </div>
+          <div className="column col-md-2">
+            <span className="bold">HP: </span><span>{monster.hit_points}</span>
+          </div>
+          <div className="column col-md-2">
+            <span className="bold">SPEED: </span><span>{monster.speed}</span>
+          </div>
+          <div className="column col-md-2">
+            <span className="bold">PASS PER:</span><span>{monster.perception + 10}</span>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column col-md-2">
+            <div className="bold centered">STR</div><div className="centered">{monster.strength}</div>
+          </div>
+          <div className="column col-md-2">
+            <div className="bold centered">DEX</div><div className="centered">{monster.dexterity}</div>
+          </div>
+          <div className="column col-md-2">
+            <div className="bold centered">CON</div><div className="centered">{monster.constitution}</div>
+          </div>
+          <div className="column col-md-2">
+            <div className="bold centered">INT</div><div className="centered">{monster.intelligence}</div>
+          </div>
+          <div className="column col-md-2">
+            <div className="bold centered">WIS</div><div className="centered">{monster.wisdom}</div>
+          </div>
+          <div className="column col-md-2">
+            <div className="bold centered">CHA</div><div className="centered">{monster.charisma}</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+	render() {
+		return this.renderNotSelected();
 	}
 }
 
