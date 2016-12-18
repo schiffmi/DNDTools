@@ -2,7 +2,7 @@
 import json
 
 class Monster():
-    def __init__(self, monster):
+    def __init__(self, monster, index):
         self.name = monster.pop('name')
         self.size = monster.pop('size')
         self.type = monster.pop('type')
@@ -38,6 +38,7 @@ class Monster():
         for save in self.saves:
             monster.pop(save + '_save')
         self.checks = monster
+        self.id = index
 
     def asDict(self):
         return dict( (k,v) for (k, v) in self.__dict__.items() )
@@ -46,7 +47,7 @@ class Monster():
         return 'Name: {}'.format(self.name)
 
 class Spell():
-    def __init__(self, spell):
+    def __init__(self, spell, index):
         self.name = spell.pop('name');
         self.desc = spell.pop('desc').replace('<p>','').replace('</p>','')
         self.page = spell.pop('page')
@@ -60,6 +61,7 @@ class Spell():
         self.components = spell.pop('components', '')
         self.level = spell.pop('level', '')
         self.requirements = spell
+        self.id = index
         
 
     def asDict(self):
@@ -72,11 +74,11 @@ if __name__ == '__main__':
     data = {};
     with open('./5e-SRD-Monsters.json') as monstersjson:
         data = json.load(monstersjson)
-    monsters = { "monsters" : [ Monster(monster).asDict() for monster in data['monsters'] ] }
+    monsters = { "monsters" : { index:Monster(monster, index).asDict() for (index,monster) in enumerate(data['monsters']) } }
     
     with open('./5e-SRD-Spells.json') as spellsjson:
         data = json.load(spellsjson)
-    spells = { "spells" : [ Spell(spell).asDict() for spell in data['spells'] ] }
+    spells = { "spells" : { index:Spell(spell, index).asDict() for (index, spell) in enumerate(data['spells']) } }
     
 
     #print(monsters)
