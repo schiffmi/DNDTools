@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import *as actions from '../actions/actions.js';
+import * as actions from '../actions/actions.js';
 import { getSortedMonsters } from '../reducers';
 import Monsters from '../components/monsters';
 
@@ -13,7 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    sortHandler: actions.sortMonsters
+    sortHandler: actions.sortMonsters,
+    filterHandler: actions.filterMonsters
   }, dispatch);
 }
 

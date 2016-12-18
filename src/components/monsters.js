@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import Monster from './monster';
 
 class Monsters extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {filter: ''};
-	}
-
 	render() {
-		const { monsters, sortHandler } = this.props;
+		const { monsters, sortHandler, filter, filterHandler } = this.props;
 		return (
 			<section>
+			    <div className="form-group">			        
+			        <input value={filter} onChange={e => filterHandler(e.target.value)} className="form-input" type="text" id="filter" placeholder="Search..." />			        
+			    </div>
 				<section className="tablehead">
 					<div className="columns col-gapless">
 						<div className="column col-md-2">
@@ -41,7 +39,9 @@ class Monsters extends Component {
 
 Monsters.propTypes = {
 	monsters: React.PropTypes.array,
-	sortMonsters: React.PropTypes.func
+	filter: React.PropTypes.string,
+	sortMonsters: React.PropTypes.func,
+	filterHandler: React.PropTypes.func
 };
 
 export default Monsters;

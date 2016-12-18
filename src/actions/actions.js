@@ -10,7 +10,7 @@ export function initializeAppState() {
 
 function getMonsters() {  
   return dispatch => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
         const monsters = require('../../data/monsters.min.json')["monsters"];
         dispatch(getMonstersAsync(monsters));
     }
@@ -39,6 +39,13 @@ export function sortMonsters(sortfield) {
     return {
         type: types.SORT_MONSTERS,
         payload: sortfield
+    }
+}
+
+export function filterMonsters(filter) {
+    return {
+        type: types.FILTER_MONSTERS,
+        payload: filter.toLowerCase()
     }
 }
 
