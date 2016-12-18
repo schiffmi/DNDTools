@@ -1,24 +1,19 @@
-import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getMonsters } from '../actions/actions.js';
-
+import *as actions from '../actions/actions.js';
+import { getSortedMonsters } from '../reducers';
 import Monsters from '../components/monsters';
-
-Monsters.propTypes = {
-    monsters: React.PropTypes.array
-};
 
 function mapStateToProps(state) {
     return {
-        monsters: state.monsters.all
+        monsters: getSortedMonsters(state)
     };
 }
 
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getMonsters
+    sortHandler: actions.sortMonsters
   }, dispatch);
 }
 

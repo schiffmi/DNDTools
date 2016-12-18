@@ -5,8 +5,10 @@
     /*border: 1px solid black;*/
 }
 .statblock-section {
-    border-bottom: 1px solid #ccc;
     margin: 5px;
+}
+.statblock-section:not(:Last-of-type){
+    border-bottom: 1px solid #ccc;
 }
 .name {
     font-size: 1.4em;

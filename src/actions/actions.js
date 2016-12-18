@@ -31,7 +31,14 @@ function getMonsters() {
 function getMonstersAsync(monsters) {
     return {
         type: types.GET_MONSTERS,
-        payload: monsters
+        payload: { monsters, lists: { 'all': generateInitialList(monsters) }}
+    }
+}
+
+export function sortMonsters(sortfield) {
+    return {
+        type: types.SORT_MONSTERS,
+        payload: sortfield
     }
 }
 
@@ -53,6 +60,10 @@ function getSpells() {
 function getSpellsAsync(spells) {
     return {
         type: types.GET_MONSTERS,
-        payload: spells
+        payload: {spells, lists: {'all': generateInitialList(spells) } }
     }
+}
+
+function generateInitialList(items) {
+    return Object.keys(items).map(id => id);
 }
