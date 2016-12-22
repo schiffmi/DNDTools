@@ -9,7 +9,7 @@ import reducers from './reducers';
 
 import App from './App';
 import 'spectre.css/dist/spectre.min.css';
-import './style.css';
+import './styles/style.css';
 
 const middlewares = [thunk];
 
