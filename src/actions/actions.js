@@ -4,7 +4,7 @@ import axios from 'axios';
 export function initializeAppState() {
     return dispatch => {
         dispatch(getMonsters());
-        //dispatch(getSpells());
+        dispatch(getSpells());
     }
 }
 
@@ -49,28 +49,55 @@ export function filterMonsters(filter) {
     }
 }
 
+export function sortSpells(sortfield) {
+    return {
+        type: types.SORT_SPELLS,
+        payload: sortfield
+    }
+}
+
+export function filterSpells(filter) {
+    return {
+        type: types.FILTER_SPELLS,
+        payload: filter.toLowerCase()
+    }
+}
+
 
 function getSpells() {  
   return dispatch => {
-    axios.get('api/spells')
-        .then(response => {
-            dispatch(getMonstersAsync(response.data.spells));        
-        })
-        .catch(e => dispatch({
-                type: types.ERROR,
-                payload: e
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+        const spells = require('../../data/spells.min.json')["spells"];
+        dispatch(getSpellsAsync(spells));
+    }
+    else{
+        axios.get('api/spells')
+            .then(response => {
+                dispatch(getMonstersAsync(response.data.spells));        
             })
-        );
+            .catch(e => dispatch({
+                    type: types.ERROR,
+                    payload: e
+                })
+            );
+    }
   }
 }
 
 function getSpellsAsync(spells) {
     return {
-        type: types.GET_MONSTERS,
+        type: types.GET_SPELLS,
         payload: {spells, lists: {'all': generateInitialList(spells) } }
     }
 }
 
 function generateInitialList(items) {
     return Object.keys(items).map(id => id);
+}
+
+export function chooseMainView(view) {
+    return {
+        type: types.CHOOSE_MAIN_VIEW,
+        payload: view
+    }
 }

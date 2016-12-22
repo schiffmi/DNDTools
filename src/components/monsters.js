@@ -40,7 +40,7 @@ class Monsters extends Component {
 Monsters.propTypes = {
 	monsters: React.PropTypes.array,
 	filter: React.PropTypes.string,
-	sortMonsters: React.PropTypes.func,
+	sortHandler: React.PropTypes.func,
 	filterHandler: React.PropTypes.func
 };
 

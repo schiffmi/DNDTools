@@ -1,20 +1,18 @@
 import React from 'react';
-import InitiativeTracker from '../containers/container_initiative';
-import Monsters from '../containers/container_monsters.js';
+import MainView from '../containers/container_mainview.js';
+import Menu from '../containers/container_menu.js';
 
-const AppContent = () => {
+const AppContent = (props) => {
     return (
         <div className="container">
-            <div className="columns col-gapless">
-                <div className="column col-9">
-                    <Monsters />
-                </div>
-                <div className="column col-3">
-                    <InitiativeTracker />                    
-                </div>
-            </div>
+            <Menu />
+            <MainView />            
         </div>
     );
+}
+
+AppContent.propTypes = {
+    content: React.PropTypes.object
 }
          
 export default AppContent;

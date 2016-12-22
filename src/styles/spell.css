@@ -1,0 +1,33 @@
+.spell-row {
+    border-bottom: 1px solid #ccc;
+}
+.title {
+    /*border: 1px solid black;*/
+}
+.statblock-section {
+    margin: 5px;
+}
+.statblock-section:not(:Last-of-type){
+    border-bottom: 1px solid #ccc;
+}
+.name {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.description {
+    font-style: italic;
+}
+.monster-selected {
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}
+.section-title {
+    font-size: 1.2em;
+}
+.spell-actions {
+    width: 95%;
+    margin: 0 auto;
+}
+.spell-action:not(:last-of-type) {
+    border-bottom: 1px solid #ccc;
+}
