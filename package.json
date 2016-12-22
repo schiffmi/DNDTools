@@ -5,7 +5,7 @@
   "proxy": "http://localhost:5000/",
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "react-scripts": "0.8.3",
+    "react-scripts": "0.8.4",
     "redux-logger": "^2.7.4"
   },
   "dependencies": {
