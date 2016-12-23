@@ -11,16 +11,20 @@ class Spells extends Component {
                 </div>
                 <section className="tablehead">
                     <div className="columns col-gapless">
-                        <div className="column col-md-3">
+                        <div className="column col-md-2">
                             <span onClick={() => sortHandler('name') }>Name</span>
                         </div>
-                        <div className="column col-md-3">
+                        <div className="column col-md-2">
                             <span onClick={() => sortHandler('level')}>Level</span>
                         </div>                  
-                        <div className="column col-md-3">
+                        <div className="column col-md-2">
+                            <span onClick={() => sortHandler('school')}>School</span>
+                        </div>                  
+
+                        <div className="column col-md-2">
                             <span onClick={() => sortHandler('duration')}>Duration</span>
                         </div>
-                        <div className="column col-md-3">
+                        <div className="column col-md-2">
                             <span onClick={() => sortHandler('casting_time')}>Casting Time</span>
                         </div>
                     </div>                        
