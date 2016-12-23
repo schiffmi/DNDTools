@@ -15,19 +15,22 @@ class Spell extends Component {
         return (
           <section onClick={() => this.setState({selected: true})} className="spell-row">
             <div className="columns col-gapless">
-              <div className="column col-2">
+              <div className="column col-md-2">
                 <span>{spell.name}</span>
               </div>
-              <div className="column col-2">
+              <div className="column col-md-1">
                 <span>{spell.level}</span>
               </div>
-              <div className="column col-2">
-                <span>{spell.school}</span>
+              <div className="column col-md-2">
+                <span>{ spell.requirements.class.join(' | ') }</span>
               </div>
-              <div className="column col-2">
+              <div className="column col-md-3">
+                <span>{spell.requirements.school}</span>
+              </div>
+              <div className="column col-md-1">
                 <span>{spell.duration}</span>
               </div>
-              <div className="column col-2">
+              <div className="column col-md-1">
                 <span>{spell.casting_time}</span>
               </div>              
             </div>

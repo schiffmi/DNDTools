@@ -14,17 +14,23 @@ class Spells extends Component {
                         <div className="column col-md-2">
                             <span onClick={() => sortHandler('name') }>Name</span>
                         </div>
-                        <div className="column col-md-2">
+                        <div className="column col-md-1">
                             <span onClick={() => sortHandler('level')}>Level</span>
                         </div>                  
+
+                        <div className="column col-md-3">
+                            <span>Class</span>
+                        </div>
+
                         <div className="column col-md-2">
                             <span onClick={() => sortHandler('school')}>School</span>
                         </div>                  
-
-                        <div className="column col-md-2">
+                        
+                        <div className="column col-md-1">
                             <span onClick={() => sortHandler('duration')}>Duration</span>
                         </div>
-                        <div className="column col-md-2">
+
+                        <div className="column col-md-1">
                             <span onClick={() => sortHandler('casting_time')}>Casting Time</span>
                         </div>
                     </div>                        

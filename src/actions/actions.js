@@ -1,4 +1,5 @@
 import * as types from './types.js';
+import { normalize, Schema, arrayOf } from 'normalizr';
 import axios from 'axios';
 
 export function initializeAppState() {
@@ -11,7 +12,7 @@ export function initializeAppState() {
 function getMonsters() {  
   return dispatch => {
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
-        const monsters = require('../../data/monsters.min.json')["monsters"];
+        const monsters = require('../../data/monsters.min.json');
         dispatch(getMonstersAsync(monsters));
     }
     else {
@@ -29,10 +30,16 @@ function getMonsters() {
 }
 
 function getMonstersAsync(monsters) {
+    const normalizedMonsters = normalizeMonsters(monsters);
     return {
         type: types.GET_MONSTERS,
-        payload: { monsters, lists: { 'all': generateInitialList(monsters) }}
+        payload: { monsters: normalizedMonsters.entities.monsters, lists: { 'all': [...normalizedMonsters.result.monsters] }}
     }
+}
+
+function normalizeMonsters(monsters) {
+    const monster = new Schema('monsters');
+    return normalize(monsters, { monsters: arrayOf(monster) });
 }
 
 export function sortMonsters(sortfield) {
@@ -67,7 +74,7 @@ export function filterSpells(filter) {
 function getSpells() {  
   return dispatch => {
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
-        const spells = require('../../data/spells.min.json')["spells"];
+        const spells = require('../../data/spells.min.json');
         dispatch(getSpellsAsync(spells));
     }
     else{
@@ -84,11 +91,27 @@ function getSpells() {
   }
 }
 
+// function getSpellsAsync(spells) {
+//     return {
+//         type: types.GET_SPELLS,
+//         payload: {spells, lists: {'all': generateInitialList(spells) } }
+//     }
+// }
+
+
 function getSpellsAsync(spells) {
+    console.log(spells);
+    const normalizedSpells = normalizeSpells(spells);
+    console.log(normalizedSpells);
     return {
         type: types.GET_SPELLS,
-        payload: {spells, lists: {'all': generateInitialList(spells) } }
+        payload: { spells: normalizedSpells.entities.spells, lists: { 'all': [...normalizedSpells.result.spells] }}
     }
+}
+
+function normalizeSpells(spells) {
+    const spell = new Schema('spells');
+    return normalize(spells, { spells: arrayOf(spell) });
 }
 
 function generateInitialList(items) {
