@@ -61,6 +61,7 @@ class Spell():
         self.components = spell.pop('components', '')
         self.level = spell.pop('level', '')
         self.requirements = spell
+        self.requirements['class'] = self.requirements['class'].split(', ')
         self.id = index
         
 
@@ -74,11 +75,11 @@ if __name__ == '__main__':
     data = {};
     with open('./5e-SRD-Monsters.json') as monstersjson:
         data = json.load(monstersjson)
-    monsters = { "monsters" : { index:Monster(monster, index).asDict() for (index,monster) in enumerate(data['monsters']) } }
+    monsters = { "monsters" : [ Monster(monster, index).asDict() for (index,monster) in enumerate(data['monsters']) ] }
     
     with open('./5e-SRD-Spells.json') as spellsjson:
         data = json.load(spellsjson)
-    spells = { "spells" : { index:Spell(spell, index).asDict() for (index, spell) in enumerate(data['spells']) } }
+    spells = { "spells" : [ Spell(spell, index).asDict() for (index, spell) in enumerate(data['spells']) ] }
     
 
     #print(monsters)
