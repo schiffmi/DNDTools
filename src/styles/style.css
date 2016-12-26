@@ -4,6 +4,26 @@ body {
   font-family: sans-serif;
 }
 
+div.body {
+    margin-top: 188px;
+}
+
+div.content {
+    width: 75%;
+}
+div.sidebar {
+    width: 25%;
+    position: relative;
+}
+
+div.menu {
+    position: fixed;
+    width: 100%;
+    top:130px;
+    left: 0px;
+    margin-left: 0px; margin-right: 0px;
+}
+
 .column {
     padding: 0.5rem;
 }

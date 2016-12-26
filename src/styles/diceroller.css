@@ -1,0 +1,12 @@
+div.diceroller {
+    position: fixed;
+    bottom: 0px;
+    width:25%;
+    border: 1px solid black;
+}
+
+.rollhistory {
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

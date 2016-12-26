@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import AppContent from './components/app_content';
 import logo from './d20.svg';
 import { initializeAppState } from './actions/actions.js';
+import Menu from './containers/container_menu.js';
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>DND Tools</h2>
+          <Menu />
         </div>
         <AppContent />        
       </div>

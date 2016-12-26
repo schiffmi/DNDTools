@@ -9,10 +9,12 @@ const Menu = (props) => {
         return ( <li key={view.id} className={ 'tab-item' + (active ? ' active' : '') }><a href="#" onClick={() => chooseView(view.id)} >{ view.title }</a></li> );
     });
 
-    return (                
-        <ul className="tab tab-block">
-            { navItems }
-        </ul>     
+    return (
+        <div className="menu">
+            <ul className="tab tab-block">
+                { navItems }
+            </ul>
+        </div>
     );
 }
 

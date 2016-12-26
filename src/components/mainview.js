@@ -2,7 +2,7 @@ import React from 'react';
 import InitiativeTracker from '../containers/container_initiative';
 import Monsters from '../containers/container_monsters';
 import Spells from '../containers/container_spells';
-
+import DiceRoller from './diceroller';
 const MainView = (props) => {
     const { currentView } = props;
     let currentViewComponent;
@@ -21,11 +21,12 @@ const MainView = (props) => {
 
     return (                
         <div className="columns col-gapless">
-            <div className="column col-9">
+            <div className="content">
                 { currentViewComponent }
             </div>
-            <div className="column col-3">
-                <InitiativeTracker />                    
+            <div className="sidebar">
+                <InitiativeTracker /> 
+                <DiceRoller />                   
             </div>
         </div>        
     );

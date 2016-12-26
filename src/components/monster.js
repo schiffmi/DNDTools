@@ -91,13 +91,19 @@ class Monster extends Component {
                 <div className="section-title">Actions</div>
                 <Actions actions={monster.actions} />
               </section>
+              { /* Reactions */ }
+              { monster.reactions.length ? (
+                <section className="statblock-section">
+                  <div className="section-title">Reactions</div>
+                  <Actions actions={monster.reactions} />
+                </section> ) : null }
               { /* Legendary Actions */ }
               { monster.legendary_actions.length ? (
                 <section className="statblock-section">
                   <div className="section-title">Legendary Actions</div>
                   <Actions actions={monster.legendary_actions} />
                 </section> ) : null }
-              { /* Actions */ }
+              { /* Special Abilities */ }
               { monster.special_abilities.length ? (
                 <section className="statblock-section">
                   <div className="section-title">Special Abilities</div>
