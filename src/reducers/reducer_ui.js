@@ -1,4 +1,3 @@
-import React from 'react';
 import { CHOOSE_MAIN_VIEW } from '../actions/types';
 
 

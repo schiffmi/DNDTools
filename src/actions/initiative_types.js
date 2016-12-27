@@ -1,0 +1,7 @@
+export const ADD_ENTITY = 'ADD_ENTITY';
+export const REMOVE_ENTITY = 'REMOVE_ENTITY';
+export const SORT_ENTITIES = 'SORT_ENTITIES';
+export const NEXT_ENTITY = 'NEXT_ENTITY';
+export const PREV_ENTITY = 'PREV_ENTITY';
+export const CLEAR_ENTITIES = 'CLEAR_ENTITIES';
+export const UPDATE_ENTITY = 'UPDATE_ENTITY';

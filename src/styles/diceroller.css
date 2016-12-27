@@ -1,8 +1,6 @@
 div.diceroller {
-    position: fixed;
-    bottom: 0px;
-    width:25%;
-    border: 1px solid black;
+    width:100%;
+    border: 1px solid black;    
 }
 
 .rollhistory {

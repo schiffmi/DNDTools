@@ -100,7 +100,6 @@ function getSpells() {
 
 
 function getSpellsAsync(spells) {
-    console.log(spells);
     const normalizedSpells = normalizeSpells(spells);
     console.log(normalizedSpells);
     return {

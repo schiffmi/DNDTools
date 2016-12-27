@@ -9,11 +9,13 @@ div.body {
 }
 
 div.content {
-    width: 75%;
+    width: 70%;
 }
 div.sidebar {
-    width: 25%;
-    position: relative;
+    width: 30%;
+    position: fixed;
+    right: 0px;
+    height: 100%;
 }
 
 div.menu {
