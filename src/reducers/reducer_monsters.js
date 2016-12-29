@@ -101,5 +101,6 @@ export const getSortedMonsters = createSelector(
 //         });
 //       break;
 //   }
+    // console.log('reselected');
 //   return sortedList.map(id => state.all[id]).filter(monster => monster.name.toLowerCase().includes(state.filter));     
 // }

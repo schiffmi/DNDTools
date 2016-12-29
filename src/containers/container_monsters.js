@@ -6,6 +6,7 @@ import Monsters from '../components/monsters';
 
 function mapStateToProps(state) {
     return {
+        filter: state.monsters.filter,
         monsters: getSortedMonsters(state)
     };
 }
