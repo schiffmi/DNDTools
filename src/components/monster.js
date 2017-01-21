@@ -15,23 +15,23 @@ class Monster extends Component {
     const { monster } = this.props;
     return (
       <section onClick={() => this.setState({selected: true})} className="monster-row">
-        <div className="columns col-gapless">
-          <div className="column col-2">
+        <div className="row">
+          <div className="col-xs-2">
             <span>{monster.name}</span>
           </div>
-          <div className="column col-2">
+          <div className="col-xs-2">
             <span>{monster.hit_dice} ({monster.hit_points})</span>
           </div>
-          <div className="column col-2">
+          <div className="col-xs-2">
             <span>{monster.armor_class}</span>
           </div>
-          <div className="column col-2">
+          <div className="col-xs-2">
             <span>{monster.speed}</span>
           </div>
-          <div className="column col-2">
+          <div className="col-xs-2">
             <span>{monster.size}</span>
           </div>
-          <div className="column col-2">
+          <div className="col-xs-2">
             <span>{monster.challenge_rating}</span>
           </div>
         </div>
@@ -43,31 +43,31 @@ class Monster extends Component {
     const { monster } = this.props;
     return (
       <section className="monster-row monster-selected">
-        <div className="columns col-gapless">
-          <div className={ this.state.spell !== null ? 'column col-9' : 'column col-12'}>
+        <div className="row col-xs-gapless">
+          <div className={ this.state.spell !== null ? 'col-xs-9' : 'col-xs-12'}>
               <section className="title statblock-section">
-                <div className="columns col-gapless">
-                  <div className="column col-11">
+                <div className="row col-xs-gapless">
+                  <div className="col-xs-10">
                     <div className="name">{ monster.name }</div>
                     <div className="description">{monster.type}, {monster.alignment}</div>
                   </div>
-                  <div className="column col-1"><button className="btn btn-default btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
+                  <div className="col-xs-2"><button className="btn btn-default btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
                 </div>
               </section>
               { /* Important Stats */ }
               <section className="statblock-section" >
-                <div className="columns col-gapless">
-                  <div className="column col-6">
+                <div className="row col-xs-gapless">
+                  <div className="col-xs-6">
                     <div><span className="field-label">Armor Class: </span><span>{monster.armor_class}</span></div>
                     <div><span className="field-label">Hit Points: </span><span>{monster.hit_dice} ({monster.hit_points})</span></div>
                     <div><span className="field-label">Speed: </span><span>{monster.speed}</span></div>
                   </div>
-                  <div className="column col-3">
+                  <div className="col-xs-3">
                     <div><span className="field-label">Strength: </span><span>{monster.abilities.strength}</span></div>
                     <div><span className="field-label">Constitution: </span><span>{monster.abilities.constitution}</span></div>
                     <div><span className="field-label">Dexterity: </span><span>{monster.abilities.dexterity}</span></div>                  
                   </div>
-                  <div className="column col-3">
+                  <div className="col-xs-3">
                     <div><span className="field-label">Intelligence: </span><span>{monster.abilities.intelligence}</span></div>
                     <div><span className="field-label">Wisdom: </span><span>{monster.abilities.wisdom}</span></div>
                     <div><span className="field-label">Charisma: </span><span>{monster.abilities.charisma}</span></div>

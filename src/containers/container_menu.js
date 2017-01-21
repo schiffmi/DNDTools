@@ -10,7 +10,7 @@ function mapStateToProps({ui}) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    chooseView: actions.chooseMainView,    
+    chooseView: actions.chooseMainView,
   }, dispatch);
 }
 

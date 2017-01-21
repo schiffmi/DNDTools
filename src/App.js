@@ -16,12 +16,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>DND Tools</h2>
-          <Menu />
-        </div>
-        <AppContent />        
+        <nav className="navbar navbar-inverse navbar-fixed-top">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <div className="navbar-brand"><img src={logo} className="App-logo" alt="logo" /><span>DND Tools</span></div>
+            </div>
+            <div id="navbar" className="navbar-collapse collapse">
+              <Menu />
+            </div>
+          </div>
+        </nav>
+        <AppContent />
       </div>
     );
   }

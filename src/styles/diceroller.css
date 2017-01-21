@@ -3,6 +3,10 @@ div.diceroller {
     border: 1px solid black;    
 }
 
+.roll-button {
+	cursor: pointer;
+}
+
 .rollhistory {
     max-height: 100px;
     overflow-y: scroll;

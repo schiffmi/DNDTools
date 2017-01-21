@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 
 class DiceRollHistory extends Component {
     componentDidUpdate() {
-        this.scrollBottom()
-            
-            
+        this.scrollBottom();    
     }
     componentDidMount() {
-        this.scrollBottom();            
+        this.scrollBottom();
     }
 
     scrollBottom() {
-        this.histElem.scrollTop = this.histElem.scrollHeight ;
+        this.histElem.scrollTop = this.histElem.scrollHeight;
     }
 
     render() {
@@ -20,7 +18,7 @@ class DiceRollHistory extends Component {
             return (
                 <tr key={roll.time}><td>{ roll.dice }: { roll.total }</td></tr>
             );
-        });       
+        });
 
         return (
             <div className="rollhistory" ref={ elem => this.histElem = elem }>

@@ -19,17 +19,19 @@ const MainView = (props) => {
             break;
     }
 
-    return (                
-        <div className="columns col-gapless">
-            <div className="content">
+    return (
+        <div className="row">
+            { /* Main Content */ }
+            <div className="col-md-9 content main">
                 { currentViewComponent }
             </div>
-            <div className="sidebar">
-                <InitiativeTracker /> 
-                <DiceRoller />                   
+            { /* Fixed Sidebar for diceroller and Challenge Calculator */ }
+            <div className="col-md-3 col-md-offset-9 sidebar">
+                <InitiativeTracker />
+                <DiceRoller />
             </div>
-        </div>        
+        </div>
     );
-}
+};
 
 export default MainView;

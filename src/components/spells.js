@@ -6,34 +6,32 @@ class Spells extends Component {
         const { spells, sortHandler, filter, filterHandler } = this.props;
         return (
             <section>
-                <div className="form-group">                    
-                    <input value={filter} onChange={e => filterHandler(e.target.value)} className="form-input" type="text" id="filter" placeholder="Search..." />                   
+                <div className="form-group">
+                    <input value={filter} onChange={e => filterHandler(e.target.value)} className="form-input" type="text" id="filter" placeholder="Search..." />
                 </div>
                 <section className="tablehead">
-                    <div className="columns col-gapless">
-                        <div className="column col-md-2">
+                    <div className="row">
+                        <div className="col-xs-3">
                             <span onClick={() => sortHandler('name') }>Name</span>
                         </div>
-                        <div className="column col-md-1">
+                        <div className="col-xs-1">
                             <span onClick={() => sortHandler('level')}>Level</span>
-                        </div>                  
-
-                        <div className="column col-md-3">
+                        </div>
+                        <div className="col-xs-3">
                             <span>Class</span>
                         </div>
 
-                        <div className="column col-md-2">
+                        <div className="col-xs-2">
                             <span onClick={() => sortHandler('school')}>School</span>
-                        </div>                  
-                        
-                        <div className="column col-md-1">
+                        </div>
+                        <div className="col-xs-2">
                             <span onClick={() => sortHandler('duration')}>Duration</span>
                         </div>
 
-                        <div className="column col-md-1">
+                        <div className="col-xs-1">
                             <span onClick={() => sortHandler('casting_time')}>Casting Time</span>
                         </div>
-                    </div>                        
+                    </div>
                 </section>
                 { spells.map( spell =>  ( <Spell key={spell.id} spell={spell} /> )) }
             </section>

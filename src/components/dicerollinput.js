@@ -17,15 +17,19 @@ class DiceRollInput extends Component {
     render() {
         return (
             <div className="diceinput">
-                <div className="input-group">
-                    <input className="form-input" 
-                        type="text"
-                        value={this.state.input}
-                        onChange={e => this.setState({'input': e.target.value}) }
-                        onKeyPress={this.rollDice} />
-                    <button className="btn btn-primary input-group-btn"
-                            onClick={this.rollDice}>Roll</button>
-                </div>
+                
+                    <div className="form-group">
+                        <div className="input-group">
+                            <input className="form-control"
+                                type="text"
+                                value={this.state.input}
+                                onChange={e => this.setState({'input': e.target.value}) }
+                                onKeyPress={this.rollDice} />
+                            <div className="input-group-addon roll-button" onClick={this.rollDice}>Roll
+                            </div>
+                        </div>
+                    </div>
+                
             </div>
         );    
     }    

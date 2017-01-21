@@ -8,7 +8,8 @@ import logger from 'redux-logger';
 import reducers from './reducers';
 
 import App from './App';
-import 'spectre.css/dist/spectre.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import './styles/style.css';
 
 const middlewares = [thunk];

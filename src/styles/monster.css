@@ -1,5 +1,7 @@
 .monster-row {
     border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    cursor: pointer;
 }
 .title {
     /*border: 1px solid black;*/

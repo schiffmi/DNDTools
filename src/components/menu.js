@@ -6,16 +6,14 @@ const Menu = (props) => {
 
     const navItems = views.map(view => {
         let active = currentView.id === view.id;
-        return ( <li key={view.id} className={ 'tab-item' + (active ? ' active' : '') }><a href="#" onClick={() => chooseView(view.id)} >{ view.title }</a></li> );
+        return ( <li key={view.id} className={ (active ? ' active' : '') }><a href="#" onClick={() => chooseView(view.id)} >{ view.title }</a></li> );
     });
 
     return (
-        <div className="menu">
-            <ul className="tab tab-block">
-                { navItems }
-            </ul>
-        </div>
+        <ul className="nav navbar-nav">
+            { navItems }
+        </ul>
     );
-}
+};
 
 export default Menu;
