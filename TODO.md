@@ -23,3 +23,7 @@
 
 ## DICE ROLLER
 * Bottom right fixed text based dice roller with history
+* Add to rolled item component to REROLL with previous roll
+
+## References
+* Begin creating references

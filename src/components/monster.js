@@ -43,20 +43,20 @@ class Monster extends Component {
     const { monster } = this.props;
     return (
       <section className="monster-row monster-selected">
-        <div className="row col-xs-gapless">
+        <div className="row">
           <div className={ this.state.spell !== null ? 'col-xs-9' : 'col-xs-12'}>
               <section className="title statblock-section">
-                <div className="row col-xs-gapless">
+                <div className="row">
                   <div className="col-xs-10">
                     <div className="name">{ monster.name }</div>
                     <div className="description">{monster.type}, {monster.alignment}</div>
                   </div>
-                  <div className="col-xs-2"><button className="btn btn-default btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
+                  <div className="col-xs-2"><button className="btn btn-primary btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
                 </div>
               </section>
               { /* Important Stats */ }
               <section className="statblock-section" >
-                <div className="row col-xs-gapless">
+                <div className="row">
                   <div className="col-xs-6">
                     <div><span className="field-label">Armor Class: </span><span>{monster.armor_class}</span></div>
                     <div><span className="field-label">Hit Points: </span><span>{monster.hit_dice} ({monster.hit_points})</span></div>
@@ -75,7 +75,7 @@ class Monster extends Component {
                 </div>
               </section>
               { /* Saves, Checks, Vulnerabilities, Senses, Languages, CR */}
-              <section className="statblock-section">
+              <section className="row statblock-section">
                 {this.renderSaves()}
                 {this.renderChecks()}
                 {monster.damage_vulnerabilities ? (<div><span className="field-label">Damage Vulnerabilities: </span>{monster.damage_vulnerabilities}</div>) : null }
@@ -87,25 +87,25 @@ class Monster extends Component {
                 {monster.challenge_rating ? (<div><span className="field-label">Challenge Rating: </span>{monster.challenge_rating}</div>) : null }
               </section>
               { /* Actions */ }
-              <section className="statblock-section">
+              <section className="row statblock-section">
                 <div className="section-title">Actions</div>
                 <Actions actions={monster.actions} />
               </section>
               { /* Reactions */ }
               { monster.reactions.length ? (
-                <section className="statblock-section">
+                <section className="row statblock-section">
                   <div className="section-title">Reactions</div>
                   <Actions actions={monster.reactions} />
                 </section> ) : null }
               { /* Legendary Actions */ }
               { monster.legendary_actions.length ? (
-                <section className="statblock-section">
+                <section className="row statblock-section">
                   <div className="section-title">Legendary Actions</div>
                   <Actions actions={monster.legendary_actions} />
                 </section> ) : null }
               { /* Special Abilities */ }
               { monster.special_abilities.length ? (
-                <section className="statblock-section">
+                <section className="row statblock-section">
                   <div className="section-title">Special Abilities</div>
                   <Actions actions={monster.special_abilities} />
                 </section> ) : null }
@@ -128,8 +128,8 @@ class Monster extends Component {
     return saveString ? (<div><span className="field-label">Saves: </span>{saveString}</div>) : null;
   }
 
-	render() {      
-    return this.state.selected ? this.renderSelected() : this.renderNotSelected();   
+	render() {
+    return this.state.selected ? this.renderSelected() : this.renderNotSelected();
   }
 }
 

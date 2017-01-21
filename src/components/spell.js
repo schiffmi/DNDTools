@@ -48,11 +48,11 @@ class Spell extends Component {
                 <div className="name">{ spell.name }</div>
                 <div className="description">{spell.level} {spell.requirements.school} [{spell.page}]</div>
               </div>
-              <div className="col-xs-2"><button className="btn btn-default btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
+              <div className="col-xs-2"><button className="btn btn-primary btn-sm" onClick={() => this.setState({selected: false})}>hide</button></div>
             </div>
           </section>
           { /* Important Stats */ }
-          <section className="spell-section" >
+          <section className="row spell-section" >
             <div className="row">
               <div className="col-xs-2"><span className="field-label">Range</span></div>
               <div className="col-xs-10">{spell.range}</div>
@@ -100,7 +100,7 @@ class Spell extends Component {
 
           </section>
           { /* Desc */ }
-          <section className="spell-section">
+          <section className="row spell-section">
             <div className="section-title">Description</div>
             <p>{spell.desc}</p>
             { spell.higher_level ? <p>{spell.higher_level}</p> : null}

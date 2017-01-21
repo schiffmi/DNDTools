@@ -1,5 +1,6 @@
 .spell-row {
     border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
     cursor: pointer;
 }
 .title {
@@ -20,7 +21,8 @@
 }
 .spell-selected {
     border: 1px solid #ccc;
-    margin: 5px 0;
+    margin: 5px;
+    background-color: rgba(232,216,195, 0.3);
 }
 .section-title {
     font-size: 1.2em;
